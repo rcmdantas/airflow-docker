@@ -1,0 +1,41 @@
+[2022-07-13 00:01:27,288] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: user_processing.is_api_available manual__2022-07-13T00:01:22.893844+00:00 [queued]>
+[2022-07-13 00:01:27,305] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: user_processing.is_api_available manual__2022-07-13T00:01:22.893844+00:00 [queued]>
+[2022-07-13 00:01:27,306] {taskinstance.py:1376} INFO - 
+--------------------------------------------------------------------------------
+[2022-07-13 00:01:27,306] {taskinstance.py:1377} INFO - Starting attempt 1 of 1
+[2022-07-13 00:01:27,306] {taskinstance.py:1378} INFO - 
+--------------------------------------------------------------------------------
+[2022-07-13 00:01:27,332] {taskinstance.py:1397} INFO - Executing <Task(HttpSensor): is_api_available> on 2022-07-13 00:01:22.893844+00:00
+[2022-07-13 00:01:27,338] {standard_task_runner.py:52} INFO - Started process 8617 to run task
+[2022-07-13 00:01:27,343] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'user_processing', 'is_api_available', 'manual__2022-07-13T00:01:22.893844+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/user_processing.py', '--cfg-path', '/tmp/tmp6bkcq6a_', '--error-file', '/tmp/tmp16v18loj']
+[2022-07-13 00:01:27,344] {standard_task_runner.py:80} INFO - Job 9: Subtask is_api_available
+[2022-07-13 00:01:27,427] {task_command.py:371} INFO - Running <TaskInstance: user_processing.is_api_available manual__2022-07-13T00:01:22.893844+00:00 [running]> on host b0c7b58a654d
+[2022-07-13 00:01:27,532] {taskinstance.py:1591} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=user_processing
+AIRFLOW_CTX_TASK_ID=is_api_available
+AIRFLOW_CTX_EXECUTION_DATE=2022-07-13T00:01:22.893844+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-07-13T00:01:22.893844+00:00
+[2022-07-13 00:01:27,533] {http.py:97} INFO - Poking: api/
+[2022-07-13 00:01:27,563] {taskinstance.py:1909} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/sensors/base.py", line 277, in execute
+    poke_return = self.poke(context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/sensors/http.py", line 112, in poke
+    raise exc
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/sensors/http.py", line 103, in poke
+    extra_options=self.extra_options,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/hooks/http.py", line 114, in run
+    session = self.get_conn(headers)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/hooks/http.py", line 68, in get_conn
+    conn = self.get_connection(self.http_conn_id)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/hooks/base.py", line 67, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/connection.py", line 430, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `user_api` isn't defined
+[2022-07-13 00:01:27,570] {taskinstance.py:1420} INFO - Marking task as FAILED. dag_id=user_processing, task_id=is_api_available, execution_date=20220713T000122, start_date=20220713T000127, end_date=20220713T000127
+[2022-07-13 00:01:27,586] {standard_task_runner.py:97} ERROR - Failed to execute job 9 for task is_api_available (The conn_id `user_api` isn't defined; 8617)
+[2022-07-13 00:01:27,599] {local_task_job.py:156} INFO - Task exited with return code 1
+[2022-07-13 00:01:27,672] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
